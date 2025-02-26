@@ -12,7 +12,10 @@ export function TimerComponent() {
   return (
     <div className={"relative"}>
       <motion.svg
-        className={"w-80 h-80"}
+        className={`
+          w-80 h-80
+          sm:w-96 sm:h-96
+        `}
         transition={{duration: 0.7}}
         animate={{rotateY: showSettings ? 180 : 0}}
       >
@@ -42,20 +45,20 @@ export function TimerComponent() {
       >
         <div
           className={"flex flex-col gap-2 justify-center items-center absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%]"}>
-          <p className={"text-[var(--secondary-bg-color)]"}>Focus Period</p>
+          <p className={"text-[var(--secondary-bg-color)] sm:text-xl"}>Focus Period</p>
           <FocusTimerInput/>
         </div>
 
         <div
           className={"flex flex-col gap-2 justify-center items-center absolute top-0 right-1/2 translate-x-1/2 translate-y-[250%]"}>
-          <p className={"text-[var(--secondary-bg-color)]"}>Break Period</p>
+          <p className={"text-[var(--secondary-bg-color)] sm:text-xl"}>Break Period</p>
           <BreakTimerInput/>
         </div>
 
         <div className={"flex flex-row gap-4 justify-center items-center absolute bottom-0 right-1/2 translate-x-1/2 -translate-y-[250%]"}>
-          <button className={"text-[var(--secondary-bg-color)]"}>SAVE</button>
+          <button className={"text-[var(--secondary-bg-color)] sm:text-xl"}>SAVE</button>
           <button
-            className={"text-[var(--secondary-bg-color)]"}
+            className={"text-[var(--secondary-bg-color)] sm:text-xl"}
             onClick={() => setShowSettings(!showSettings)}
           >
             DISCARD

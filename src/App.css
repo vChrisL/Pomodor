@@ -27,6 +27,7 @@
   #root {
     @apply
     flex flex-col justify-between
+    sm:flex-row sm:justify-normal sm:p-0!
   }
 
   button {

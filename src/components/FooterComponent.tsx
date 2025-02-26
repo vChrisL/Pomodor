@@ -2,7 +2,10 @@ import {MenuIcon, MoonIcon, TrophyIcon} from "./IconComponents.tsx";
 
 export function FooterBar() {
   return (
-    <footer className={"flex flex-row justify-center items-center gap-8"}>
+    <footer className={`
+      flex flex-row justify-center items-center gap-8
+      sm:hidden
+    `}>
       <button>
         <TrophyIcon svgClass={"w-8 h-8 fill-gray-300"}></TrophyIcon>
       </button>
