@@ -1,5 +1,6 @@
 import {BreakTimerInput, FocusTimerInput} from "./TimerInputComponent.tsx";
 import {useState} from "react";
+import {motion} from "framer-motion";
 
 export function TimerComponent() {
   const [showSettings, setShowSettings] = useState<boolean>(false);
@@ -10,11 +11,19 @@ export function TimerComponent() {
 
   return (
     <div className={"relative"}>
-      <svg className={"w-80 h-80"}>
+      <motion.svg
+        className={"w-80 h-80"}
+        transition={{duration: 0.7}}
+        animate={{rotateY: showSettings ? 180 : 0}}
+      >
         <circle className={"fill-[var(--accent-color)]"} cx="50%" cy="50%" r="50%"/>
-      </svg>
+      </motion.svg>
 
-      <div className={`${showSettings ? 'hidden' : ''}`}>
+      <motion.div
+        className={`${showSettings ? 'hidden' : ''}`}
+        transition={{delay: 0.3, duration: 0.5}}
+        animate={{opacity: showSettings ? 0 : 100}}
+      >
         <p className={"text-2xl absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%] text-[var(--secondary-bg-color)]"}>FOCUS</p>
         <p className={"text-6xl absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[var(--secondary-bg-color)]"}>00:00</p>
 
@@ -24,9 +33,13 @@ export function TimerComponent() {
         >
           ...
         </button>
-      </div>
+      </motion.div>
 
-      <div className={`${showSettings ? '' : 'hidden'}`}>
+      <motion.div
+        className={`${showSettings ? '' : 'hidden'}`}
+        transition={{delay: 0.3, duration: 0.5}}
+        animate={{opacity: showSettings ? 100 : 0}}
+      >
         <div
           className={"flex flex-col gap-2 justify-center items-center absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%]"}>
           <p className={"text-[var(--secondary-bg-color)]"}>Focus Period</p>
@@ -50,7 +63,7 @@ export function TimerComponent() {
         </div>
 
 
-      </div>
+      </motion.div >
     </div>
   );
 }
