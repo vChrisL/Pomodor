@@ -24,8 +24,12 @@
 }
 
 @layer components {
-  #root{
+  #root {
     @apply
     flex flex-col justify-between
+  }
+
+  button {
+    @apply hover:cursor-pointer
   }
 }
