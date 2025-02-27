@@ -7,7 +7,6 @@ type TimerInputProps = {
 
 export function FocusTimerInput({time, setNewTime}: TimerInputProps) {
   const focusTimer = useTimerStore(state => state.focusTimer);
-  const setFocusTimer = useTimerStore(state => state.setFocusTimer);
 
   return (
     <div className={"flex flex-row gap-1"}>
@@ -48,7 +47,6 @@ export function FocusTimerInput({time, setNewTime}: TimerInputProps) {
 
 export function BreakTimerInput({time, setNewTime}: TimerInputProps) {
   const breakTimer = useTimerStore(state => state.breakTimer);
-  const setBreakTimer = useTimerStore(state => state.setBreakTimer);
 
   return (
     <div className={"flex flex-row gap-1"}>
