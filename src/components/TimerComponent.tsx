@@ -7,14 +7,19 @@ import {Time} from "../classes/Time.ts";
 export function TimerComponent() {
   const [showSettings, setShowSettings] = useState<boolean>(false);
 
+  // Focus timer
   const focusTimer = useTimerStore(state => state.focusTimer);
   const setFocusTimer = useTimerStore(state => state.setFocusTimer);
   const [newFocusTime, setNewFocusTime] = useState<number[]>([focusTimer.getHours, focusTimer.getMinutes, focusTimer.getSeconds]);
 
+  // Break timer
   const breakTimer = useTimerStore(state => state.breakTimer);
   const setBreakTimer = useTimerStore(state => state.setBreakTimer);
   const [newBreakTime, setNewBreakTime] = useState<number[]>([breakTimer.getHours, breakTimer.getMinutes, breakTimer.getSeconds]);
 
+  /**
+   * Handle applying changes to Focus and Break timer periods.
+   */
   function handleSaveSettings() {
     setFocusTimer(new Time(newFocusTime[0], newFocusTime[1], newFocusTime[2]));
     setBreakTimer(new Time(newBreakTime[0], newBreakTime[1], newBreakTime[2]))
@@ -106,7 +111,6 @@ export function TimerComponent() {
             DISCARD
           </button>
         </div>
-
 
       </motion.div>
     </div>
