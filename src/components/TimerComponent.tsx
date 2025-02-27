@@ -88,7 +88,7 @@ export function TimerComponent() {
         <div
           className={"flex flex-col gap-2 justify-center items-center absolute top-0 right-1/2 translate-x-1/2 translate-y-[250%]"}>
           <p className={"text-[var(--secondary-bg-color)] sm:text-xl"}>Break Period</p>
-          <BreakTimerInput/>
+          <BreakTimerInput time={newBreakTime} setNewTime={setNewBreakTime}/>
         </div>
 
         <div
@@ -101,7 +101,7 @@ export function TimerComponent() {
           </button>
           <button
             className={"text-[var(--secondary-bg-color)] sm:text-xl"}
-            onClick={() => setShowSettings(!showSettings)}
+            onClick={(): void => setShowSettings(!showSettings)}
           >
             DISCARD
           </button>
