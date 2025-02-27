@@ -7,6 +7,8 @@
   height: 100vh;
   width: 100vw;
 
+  background-color: var(--primary-bg-color);
+
   --primary-bg-color: #F1F1F1;
   --secondary-bg-color: #FAFAFA;
 
