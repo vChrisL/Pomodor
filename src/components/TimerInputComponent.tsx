@@ -1,9 +1,14 @@
+import {useTimerStore} from "../stores/TimerStore.ts";
+
 export function FocusTimerInput() {
+  const focusTimer = useTimerStore(state => state.focusTimer);
+  const setFocusTimer = useTimerStore(state => state.setFocusTimer);
+
   return (
     <div className={"flex flex-row gap-1"}>
       <input
         type={"number"}
-        defaultValue={0}
+        defaultValue={focusTimer.getHours}
         placeholder={"H"}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
@@ -11,7 +16,7 @@ export function FocusTimerInput() {
 
       <input
         type={"number"}
-        defaultValue={25}
+        defaultValue={focusTimer.getMinutes}
         placeholder={"M"}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
@@ -19,7 +24,7 @@ export function FocusTimerInput() {
 
       <input
         type={"number"}
-        defaultValue={0}
+        defaultValue={focusTimer.getSeconds}
         placeholder={"S"}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
@@ -28,11 +33,14 @@ export function FocusTimerInput() {
 }
 
 export function BreakTimerInput() {
+  const breakTimer = useTimerStore(state => state.breakTimer);
+  const setBreakTimer = useTimerStore(state => state.setBreakTimer);
+
   return (
     <div className={"flex flex-row gap-1"}>
       <input
         type={"number"}
-        defaultValue={0}
+        defaultValue={breakTimer.getHours}
         placeholder={"H"}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
@@ -40,7 +48,7 @@ export function BreakTimerInput() {
 
       <input
         type={"number"}
-        defaultValue={5}
+        defaultValue={breakTimer.getMinutes}
         placeholder={"M"}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
@@ -48,7 +56,7 @@ export function BreakTimerInput() {
 
       <input
         type={"number"}
-        defaultValue={0}
+        defaultValue={breakTimer.getSeconds}
         placeholder={"S"}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
