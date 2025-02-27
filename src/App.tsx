@@ -3,8 +3,12 @@ import {TimerComponent} from "./components/TimerComponent.tsx";
 import {Button} from "./components/Button.tsx";
 import {FooterBar} from "./components/FooterComponent.tsx";
 import {CounterCard} from "./components/CounterCardComponent.tsx";
+import {useTodoMenuStore} from "./stores/MenuStore.ts";
+import {MobileTodoMenu} from "./components/TodoMenuComponent.tsx";
 
 function App() {
+
+  const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayTodoMenu);
 
   return (
     <>
@@ -18,6 +22,7 @@ function App() {
       <main className={`
         flex flex-col gap-24 
         sm:p-4 sm:w-[calc(100%-20%)] sm:bg-[var(--primary-bg-color)]
+        ${displayTodoMenu ? 'hidden' : ''}
       `}>
         <h1 className={"text-2xl"}>POMODORO</h1>
 
@@ -40,6 +45,8 @@ function App() {
           <CounterCard message={"Total Break Periods"} count={20}></CounterCard>
         </div>
       </main>
+
+      {displayTodoMenu && <MobileTodoMenu></MobileTodoMenu>}
 
       <FooterBar></FooterBar>
     </>
