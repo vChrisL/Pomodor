@@ -2,6 +2,7 @@ import './App.css'
 import {TimerComponent} from "./components/TimerComponent.tsx";
 import {Button} from "./components/Button.tsx";
 import {FooterBar} from "./components/FooterComponent.tsx";
+import {CounterCard} from "./components/CounterCardComponent.tsx";
 
 function App() {
 
@@ -30,10 +31,13 @@ function App() {
         </div>
 
         <div className={`
-          hidden
-          sm:block
+          hidden flex-row justify-center items-center gap-8 overflow-x-auto py-2
+          sm:flex
         `}>
-          Counter cards go here
+          <CounterCard message={"Current Focus Periods"} count={3}></CounterCard>
+          <CounterCard message={"Current Break Periods"} count={2}></CounterCard>
+          <CounterCard message={"Total Focus Periods"} count={25}></CounterCard>
+          <CounterCard message={"Total Break Periods"} count={20}></CounterCard>
         </div>
       </main>
 
