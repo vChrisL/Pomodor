@@ -9,6 +9,7 @@ export class Time {
     this.seconds = seconds;
   }
 
+  // Getter setter for Hours
   public get getHours(): number {
     return this._hours;
   }
@@ -26,6 +27,7 @@ export class Time {
     this._hours = hours;
   }
 
+  // Getter setter for Minutes
   public get getMinutes(): number {
     return this._minutes;
   }
@@ -43,6 +45,7 @@ export class Time {
     this._minutes = minutes;
   }
 
+  // Getter setter for Seconds
   public get getSeconds(): number {
     return this._seconds;
   }

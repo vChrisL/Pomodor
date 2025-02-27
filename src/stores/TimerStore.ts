@@ -10,6 +10,7 @@ type TimerStore = {
 }
 
 /**
+ * Store for focus and break timer data.
  * @property focusTimer Contains timer data for focus period.
  * @property setFocusTimer (Function) Set a new time for focusTimer.
  * @property breakTimer Contains timer data for break period.
