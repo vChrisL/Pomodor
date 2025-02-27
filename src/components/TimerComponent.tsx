@@ -1,12 +1,24 @@
 import {BreakTimerInput, FocusTimerInput} from "./TimerInputComponent.tsx";
 import {useState} from "react";
 import {motion} from "framer-motion";
+import {useTimerStore} from "../stores/TimerStore.ts";
+import {Time} from "../classes/Time.ts";
 
 export function TimerComponent() {
   const [showSettings, setShowSettings] = useState<boolean>(false);
 
+  const focusTimer = useTimerStore(state => state.focusTimer);
+  const setFocusTimer = useTimerStore(state => state.setFocusTimer);
+  const [newFocusTime, setNewFocusTime] = useState<number[]>([focusTimer.getHours, focusTimer.getMinutes, focusTimer.getSeconds]);
+
+  const breakTimer = useTimerStore(state => state.breakTimer);
+  const setBreakTimer = useTimerStore(state => state.setBreakTimer);
+  const [newBreakTime, setNewBreakTime] = useState<number[]>([breakTimer.getHours, breakTimer.getMinutes, breakTimer.getSeconds]);
+
   function handleSaveSettings() {
-    throw new Error("Not implemented");
+    setFocusTimer(new Time(newFocusTime[0], newFocusTime[1], newFocusTime[2]));
+    setBreakTimer(new Time(newBreakTime[0], newBreakTime[1], newBreakTime[2]))
+    setShowSettings(!showSettings)
   }
 
   return (
@@ -70,7 +82,7 @@ export function TimerComponent() {
         <div
           className={"flex flex-col gap-2 justify-center items-center absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%]"}>
           <p className={"text-[var(--secondary-bg-color)] sm:text-xl"}>Focus Period</p>
-          <FocusTimerInput/>
+          <FocusTimerInput time={newFocusTime} setNewTime={setNewFocusTime}/>
         </div>
 
         <div
@@ -81,7 +93,12 @@ export function TimerComponent() {
 
         <div
           className={"flex flex-row gap-4 justify-center items-center absolute bottom-0 right-1/2 translate-x-1/2 -translate-y-[250%]"}>
-          <button className={"text-[var(--secondary-bg-color)] sm:text-xl"}>SAVE</button>
+          <button
+            className={"text-[var(--secondary-bg-color)] sm:text-xl"}
+            onClick={(): void => handleSaveSettings()}
+          >
+            SAVE
+          </button>
           <button
             className={"text-[var(--secondary-bg-color)] sm:text-xl"}
             onClick={() => setShowSettings(!showSettings)}

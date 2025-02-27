@@ -1,6 +1,11 @@
 import {useTimerStore} from "../stores/TimerStore.ts";
 
-export function FocusTimerInput() {
+type TimerInputProps = {
+  time: number[],
+  setNewTime:  React.Dispatch<React.SetStateAction<number[]>>
+}
+
+export function FocusTimerInput({time, setNewTime}: TimerInputProps) {
   const focusTimer = useTimerStore(state => state.focusTimer);
   const setFocusTimer = useTimerStore(state => state.setFocusTimer);
 
@@ -12,6 +17,7 @@ export function FocusTimerInput() {
         placeholder={"H"}
         min={0}
         max={60}
+        onChange={(e) => { setNewTime([parseInt(e.target.value), time[1], time[2]]) }}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
       <p className={"text-right text-[var(--secondary-bg-color)]"}>:</p>
@@ -22,6 +28,7 @@ export function FocusTimerInput() {
         placeholder={"M"}
         min={0}
         max={60}
+        onChange={(e) => { setNewTime([time[0], parseInt(e.target.value), time[2]]) }}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
       <p className={"text-right text-[var(--secondary-bg-color)]"}>:</p>
@@ -32,6 +39,7 @@ export function FocusTimerInput() {
         placeholder={"S"}
         min={0}
         max={60}
+        onChange={(e) => { setNewTime([time[0], time[1], parseInt(e.target.value)]) }}
         className={"w-14 pl-2 bg-[var(--secondary-bg-color)] rounded-lg"}
       />
     </div>
