@@ -8,6 +8,7 @@ import {MobileTodoMenu} from "./components/TodoMenuComponent.tsx";
 import {useEffect, useState} from "react";
 import {Time} from "./classes/Time.ts";
 import {useTimerStore} from "./stores/TimerStore.ts";
+import {useInterval} from "./util/UseInterval.tsx";
 
 function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayTodoMenu);
@@ -21,25 +22,30 @@ function App() {
 
   // Update time when focusTime state changes
   useEffect((): void => {
-    setTime(new Time(focusTime.getHours,focusTime.getMinutes,focusTime.getSeconds))
+    setTime(new Time(focusTime.getHours, focusTime.getMinutes, focusTime.getSeconds))
   }, [focusTime]);
 
-  /**
-   * Handles running timer logic
-   */
-  function runTimer(): void {
-    console.log("tick")
-  }
 
-  // Start stop time when isTimerRunning state changes
-  useEffect((): void => {
-    if(isTimerRunning) {
-      setTimerInterval(setInterval(runTimer, 1000));
+  // Handles timer running logic
+  const date: Date = new Date();
+  useInterval(() => {
+    if(!isTimerRunning) return;
+
+    const tmpTime = new Time(time.getHours, time.getMinutes, time.getSeconds);
+
+    if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
+    // tmpTime.seconds = tmpTime.getSeconds - 12;
+    if(tmpTime.getSeconds <= 0 && tmpTime.getMinutes > 0) {
+      tmpTime.seconds = 59;
+      tmpTime.minutes = tmpTime.getMinutes - 1;
     }
-    else {
-      clearInterval(timerInterval);
+    if(tmpTime.getMinutes <= 0 && tmpTime.getHours > 0) {
+      tmpTime.minutes = 59;
+      tmpTime.hours = tmpTime.getHours - 1;
     }
-  }, [isTimerRunning])
+
+    setTime(tmpTime);
+  }, 100);
 
   return (
     <>
