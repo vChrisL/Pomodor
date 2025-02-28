@@ -61,8 +61,17 @@ function App() {
           <TimerComponent time={time}></TimerComponent>
 
           <div className={"flex flex-row justify-center gap-8"}>
-            <Button buttonText={"START"} onClickEvent={ (): void => setIsTimerRunning(true) }></Button>
-            <Button buttonText={"STOP"} onClickEvent={ (): void => setIsTimerRunning(false) }></Button>
+            <Button
+              buttonText={"START"}
+              onClickEvent={ (): void => setIsTimerRunning(true) }/>
+            <Button
+              buttonText={"STOP"}
+              onClickEvent={ (): void => setIsTimerRunning(false) }
+              styles={`${isTimerRunning ? '' : 'hidden'}`}/>
+            <Button
+              buttonText={"RESET"}
+              onClickEvent={ (): void => setTime(new Time(focusTime.getHours, focusTime.getMinutes, focusTime.getSeconds)) }
+              styles={`${isTimerRunning ? 'hidden' : ''}`}/>
           </div>
         </div>
 
