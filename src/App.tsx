@@ -15,10 +15,13 @@ function App() {
 
 
   const focusTime = useTimerStore(state => state.focusTimer);
+  const breakTime = useTimerStore(state => state.breakTimer);
 
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
   const [timerInterval, setTimerInterval] = useState<number>();
   const [time, setTime] = useState<Time>(new Time(focusTime.getHours,focusTime.getMinutes,focusTime.getSeconds));
+
+  const [isFocusPeriod, setIsFocusPeriod] = useState<boolean>(true);
 
   // Update time when focusTime state changes
   useEffect((): void => {
@@ -33,8 +36,17 @@ function App() {
 
     const tmpTime = new Time(time.getHours, time.getMinutes, time.getSeconds);
 
-    if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
-    // tmpTime.seconds = tmpTime.getSeconds - 12;
+    // if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
+
+    if(tmpTime.isTimerOver) {
+      const toggledFocusPeriod = !isFocusPeriod;
+      setIsFocusPeriod(toggledFocusPeriod);
+
+      setTimer(toggledFocusPeriod);
+      return;
+    }
+
+    tmpTime.seconds = tmpTime.getSeconds - 12;
     if(tmpTime.getSeconds <= 0 && tmpTime.getMinutes > 0) {
       tmpTime.seconds = 59;
       tmpTime.minutes = tmpTime.getMinutes - 1;
@@ -46,6 +58,15 @@ function App() {
 
     setTime(tmpTime);
   }, 100);
+
+  function setTimer(state: boolean): void {
+    if(state) {
+      setTime(new Time(focusTime.getHours, focusTime.getMinutes, focusTime.getSeconds))
+    }
+    else {
+      setTime(new Time(breakTime.getHours, breakTime.getMinutes, breakTime.getSeconds))
+    }
+  }
 
   return (
     <>
@@ -64,7 +85,7 @@ function App() {
         <h1 className={"text-2xl"}>POMODORO</h1>
 
         <div id={"timerContainer"} className={"flex flex-col justify-center items-center gap-8"}>
-          <TimerComponent time={time}></TimerComponent>
+          <TimerComponent time={time} isFocusPeriod={isFocusPeriod}></TimerComponent>
 
           <div className={"flex flex-row justify-center gap-8"}>
             <Button
@@ -76,7 +97,7 @@ function App() {
               styles={`${isTimerRunning ? '' : 'hidden'}`}/>
             <Button
               buttonText={"RESET"}
-              onClickEvent={ (): void => setTime(new Time(focusTime.getHours, focusTime.getMinutes, focusTime.getSeconds)) }
+              onClickEvent={ (): void => setTimer(isFocusPeriod) }
               styles={`${isTimerRunning ? 'hidden' : ''}`}/>
           </div>
         </div>

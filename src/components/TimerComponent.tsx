@@ -5,10 +5,11 @@ import {useTimerStore} from "../stores/TimerStore.ts";
 import {Time} from "../classes/Time.ts";
 
 type TimerProps = {
-  time: Time
+  time: Time,
+  isFocusPeriod: boolean
 }
 
-export function TimerComponent({time}: TimerProps) {
+export function TimerComponent({time, isFocusPeriod}: TimerProps) {
   const [showSettings, setShowSettings] = useState<boolean>(false);
 
   // Focus timer
@@ -83,7 +84,7 @@ export function TimerComponent({time}: TimerProps) {
         animate={{opacity: showSettings ? 0 : 100}}
       >
         <p
-          className={"text-2xl absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%] text-[var(--secondary-bg-color)]"}>FOCUS</p>
+          className={"text-2xl absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%] text-[var(--secondary-bg-color)]"}>{isFocusPeriod ? 'FOCUS' : 'BREAK'}</p>
         <p
           className={"text-6xl absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[var(--secondary-bg-color)]"}
         >
