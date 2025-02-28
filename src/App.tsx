@@ -7,22 +7,34 @@ import {useTodoMenuStore} from "./stores/MenuStore.ts";
 import {MobileTodoMenu} from "./components/TodoMenuComponent.tsx";
 import {useEffect, useState} from "react";
 import {Time} from "./classes/Time.ts";
+import {useTimerStore} from "./stores/TimerStore.ts";
 
 function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayTodoMenu);
 
+
+  const focusTime = useTimerStore(state => state.focusTimer);
+
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
   const [timerInterval, setTimerInterval] = useState<number>();
-  const [time, setTime] = useState<Time>(new Time(0,0,0));
+  const [time, setTime] = useState<Time>(new Time(focusTime.getHours,focusTime.getMinutes,focusTime.getSeconds));
 
+  // Update time when focusTime state changes
+  useEffect((): void => {
+    setTime(new Time(focusTime.getHours,focusTime.getMinutes,focusTime.getSeconds))
+  }, [focusTime]);
+
+  /**
+   * Handles running timer logic
+   */
   function runTimer(): void {
     console.log("tick")
   }
 
+  // Start stop time when isTimerRunning state changes
   useEffect((): void => {
     if(isTimerRunning) {
       setTimerInterval(setInterval(runTimer, 1000));
-      console.log("run");
     }
     else {
       clearInterval(timerInterval);
