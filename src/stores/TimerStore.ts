@@ -17,7 +17,7 @@ type TimerStore = {
  * @property setBreakTimer (Function) Set a new time for breakTimer.
  */
 export const useTimerStore = create<TimerStore>(set => ({
-  focusTimer: new Time(0, 25, 0),
+  focusTimer: new Time(0, 25, 30),
   setFocusTimer: (newTime: Time) => {
     set({ focusTimer: newTime })
   },
