@@ -30,6 +30,18 @@ export function TimerComponent({time}: TimerProps) {
     setShowSettings(!showSettings)
   }
 
+  /**
+   * Handles displaying the timer in the proper format
+   */
+  function displayTimer(): string {
+    // Do not display hours if hours is zero
+    if(time.getHours === 0) {
+      return `${time.getMinutesString}:${time.getSecondsString}`;
+    }
+
+    return `${time.getHoursString}:${time.getMinutesString}:${time.getSecondsString}`;
+  }
+
   return (
     <div className={"relative"}>
       <motion.div
@@ -75,7 +87,7 @@ export function TimerComponent({time}: TimerProps) {
         <p
           className={"text-6xl absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[var(--secondary-bg-color)]"}
         >
-          {time.getHoursString}:{time.getMinutesString}:{time.getSecondsString}
+          {displayTimer()}
         </p>
 
         <button
