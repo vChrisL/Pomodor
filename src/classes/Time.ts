@@ -10,6 +10,9 @@ export class Time {
   }
 
   // Getter setter for Hours
+  public get getHoursString(): string {
+    return this._hours.toString().padStart(2, "0");
+  }
   public get getHours(): number {
     return this._hours;
   }
@@ -28,6 +31,9 @@ export class Time {
   }
 
   // Getter setter for Minutes
+  public get getMinutesString(): string {
+    return this._minutes.toString().padStart(2, "0");
+  }
   public get getMinutes(): number {
     return this._minutes;
   }
@@ -46,6 +52,9 @@ export class Time {
   }
 
   // Getter setter for Seconds
+  public get getSecondsString(): string {
+    return this._seconds.toString().padStart(2, "0");
+  }
   public get getSeconds(): number {
     return this._seconds;
   }

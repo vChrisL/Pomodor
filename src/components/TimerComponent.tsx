@@ -75,7 +75,7 @@ export function TimerComponent({time}: TimerProps) {
         <p
           className={"text-6xl absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[var(--secondary-bg-color)]"}
         >
-          {time.getHours}:{time.getMinutes}:{time.getSeconds}
+          {time.getHoursString}:{time.getMinutesString}:{time.getSecondsString}
         </p>
 
         <button
