@@ -4,7 +4,11 @@ import {motion} from "framer-motion";
 import {useTimerStore} from "../stores/TimerStore.ts";
 import {Time} from "../classes/Time.ts";
 
-export function TimerComponent() {
+type TimerProps = {
+  time: Time
+}
+
+export function TimerComponent({time}: TimerProps) {
   const [showSettings, setShowSettings] = useState<boolean>(false);
 
   // Focus timer
@@ -34,7 +38,7 @@ export function TimerComponent() {
         animate={{rotateY: showSettings ? 180 : 0}}
       >
         <motion.svg width="100%" height="100%" id="svg" viewBox="0 0 1440 1200" xmlns="http://www.w3.org/2000/svg"
-             className="transition duration-300 ease-in-out delay-150 scale-y-120 translate-y-[100px]"
+             className="transition duration-300 ease-in-out delay-150 scale-y-120 translate-y-[0px]"
              transition={{duration: 0.1}}
              animate={{opacity: showSettings ? 0 : 100}}>
           <defs>
@@ -69,7 +73,10 @@ export function TimerComponent() {
         <p
           className={"text-2xl absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%] text-[var(--secondary-bg-color)]"}>FOCUS</p>
         <p
-          className={"text-6xl absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[var(--secondary-bg-color)]"}>00:00</p>
+          className={"text-6xl absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[var(--secondary-bg-color)]"}
+        >
+          {time.getHours}:{time.getMinutes}:{time.getSeconds}
+        </p>
 
         <button
           className={"text-5xl absolute bottom-0 right-1/2 translate-x-1/2 -translate-y-[150%] text-[var(--secondary-bg-color)]"}
