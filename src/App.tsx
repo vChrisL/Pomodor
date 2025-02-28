@@ -5,10 +5,29 @@ import {FooterBar} from "./components/FooterComponent.tsx";
 import {CounterCard} from "./components/CounterCardComponent.tsx";
 import {useTodoMenuStore} from "./stores/MenuStore.ts";
 import {MobileTodoMenu} from "./components/TodoMenuComponent.tsx";
+import {useEffect, useState} from "react";
+import {Time} from "./classes/Time.ts";
 
 function App() {
-
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayTodoMenu);
+
+  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
+  const [timerInterval, setTimerInterval] = useState<number>();
+  const [time, setTime] = useState<Time>(new Time(0,0,0));
+
+  function runTimer(): void {
+    console.log("tick")
+  }
+
+  useEffect((): void => {
+    if(isTimerRunning) {
+      setTimerInterval(setInterval(runTimer, 1000));
+      console.log("run");
+    }
+    else {
+      clearInterval(timerInterval);
+    }
+  }, [isTimerRunning])
 
   return (
     <>
@@ -27,11 +46,11 @@ function App() {
         <h1 className={"text-2xl"}>POMODORO</h1>
 
         <div id={"timerContainer"} className={"flex flex-col justify-center items-center gap-8"}>
-          <TimerComponent></TimerComponent>
+          <TimerComponent time={time}></TimerComponent>
 
           <div className={"flex flex-row justify-center gap-8"}>
-            <Button buttonText={"START"}></Button>
-            <Button buttonText={"STOP"}></Button>
+            <Button buttonText={"START"} onClickEvent={ (): void => setIsTimerRunning(true) }></Button>
+            <Button buttonText={"STOP"} onClickEvent={ (): void => setIsTimerRunning(false) }></Button>
           </div>
         </div>
 
