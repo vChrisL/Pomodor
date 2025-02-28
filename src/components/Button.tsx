@@ -1,9 +1,10 @@
 type ButtonProps = {
-  buttonText: string
-  onClickEvent: () => void
+  buttonText: string,
+  onClickEvent: () => void,
+  styles?: string
 }
 
-export function Button({buttonText, onClickEvent}: ButtonProps) {
+export function Button({buttonText, onClickEvent, styles}: ButtonProps) {
   return (
     <button
       className={`
@@ -11,6 +12,7 @@ export function Button({buttonText, onClickEvent}: ButtonProps) {
         bg-[var(--accent-color)] text-[var(--secondary-bg-color)]
         hover:brightness-90
         active:brightness-80
+        ${styles}
       `}
       onClick={(): void => onClickEvent()}
     >
