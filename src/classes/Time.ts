@@ -71,4 +71,8 @@ export class Time {
     }
     this._seconds = seconds;
   }
+
+  public get isTimerOver(): boolean {
+    return this.getHours === 0 && this.getMinutes === 0 && this.getSeconds === 0;
+  }
 }
