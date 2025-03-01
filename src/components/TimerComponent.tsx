@@ -96,7 +96,11 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
         </p>
 
         <button
-          className={"text-5xl absolute bottom-0 right-1/2 translate-x-1/2 -translate-y-[150%] text-[var(--secondary-bg-color)]"}
+          className={`
+            text-5xl absolute bottom-0 right-1/2 translate-x-1/2 -translate-y-[150%] text-[var(--secondary-bg-color)]
+            hover:brightness-90
+            active:brightness-[85%]
+          `}
           onClick={() => setShowSettings(!showSettings)}
         >
           ...
@@ -123,13 +127,21 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
         <div
           className={"flex flex-row gap-4 justify-center items-center absolute bottom-0 right-1/2 translate-x-1/2 -translate-y-[250%]"}>
           <button
-            className={"text-[var(--secondary-bg-color)] sm:text-xl"}
+            className={`
+              text-[var(--secondary-bg-color)] sm:text-xl
+              hover:brightness-90
+              active:brightness-[85%]
+            `}
             onClick={(): void => handleSaveSettings()}
           >
             SAVE
           </button>
           <button
-            className={"text-[var(--secondary-bg-color)] sm:text-xl"}
+            className={`
+              text-[var(--secondary-bg-color)] sm:text-xl
+              hover:brightness-90
+              active:brightness-[85%]
+            `}
             onClick={(): void => setShowSettings(!showSettings)}
           >
             DISCARD
