@@ -3,16 +3,18 @@ import {TimerComponent} from "./components/TimerComponent.tsx";
 import {Button} from "./components/Button.tsx";
 import {FooterBar} from "./components/FooterComponent.tsx";
 import {CounterCard} from "./components/CounterCardComponent.tsx";
-import {useTodoMenuStore} from "./stores/MenuStore.ts";
+import {useStatsMenuStore, useTodoMenuStore} from "./stores/MenuStore.ts";
 import {MobileTodoMenu} from "./components/TodoMenuComponent.tsx";
 import {useEffect, useState} from "react";
 import {Time} from "./classes/Time.ts";
 import {useTimerStore} from "./stores/TimerStore.ts";
 import {useInterval} from "./util/UseInterval.tsx";
 import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
+import {MobileStatsMenu} from "./components/StatsMenuComponent.tsx";
 
 function App() {
-  const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayTodoMenu);
+  const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayMenu);
+  const displayStatsMenu: boolean = useStatsMenuStore(state => state.displayMenu);
 
 
   // Timer variables
@@ -117,7 +119,7 @@ function App() {
       <main className={`
         flex flex-col gap-24 
         sm:p-4 sm:w-[calc(100%-20%)] sm:bg-[var(--primary-bg-color)]
-        ${displayTodoMenu ? 'hidden' : ''}
+        ${displayTodoMenu || displayStatsMenu ? 'hidden' : ''}
       `}>
         <h1 className={"text-2xl"}>POMODORO</h1>
 
@@ -159,6 +161,7 @@ function App() {
       </main>
 
       {displayTodoMenu && <MobileTodoMenu></MobileTodoMenu>}
+      {displayStatsMenu && <MobileStatsMenu></MobileStatsMenu>}
 
       <FooterBar></FooterBar>
     </>
