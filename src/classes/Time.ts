@@ -72,10 +72,19 @@ export class Time {
     this._seconds = seconds;
   }
 
+  /**
+   * Check if timer is over.
+   * @returns {boolean} Returns a boolean value. True if timer is over, false otherwise.
+   */
   public get isTimerOver(): boolean {
     return this.getHours === 0 && this.getMinutes === 0 && this.getSeconds === 0;
   }
 
+  /**
+   * Compares if two times are equal to one another value wise.
+   * @param time Time to compare against.
+   * @returns {boolean}
+   */
   public equals(time: Time): boolean {
     return this.getHours === time.getHours && this.getMinutes === time.getMinutes && this.getSeconds === time.getSeconds;
   }
