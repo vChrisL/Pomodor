@@ -15,14 +15,15 @@ function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayTodoMenu);
 
 
+  // Timer variables
   const focusTime = useTimerStore(state => state.focusTimer);
   const breakTime = useTimerStore(state => state.breakTimer);
 
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
   const [time, setTime] = useState<Time>(new Time(focusTime.getHours,focusTime.getMinutes,focusTime.getSeconds));
-
   const [isFocusPeriod, setIsFocusPeriod] = useState<boolean>(true);
 
+  // Pomodoro statistics
   const incrementPeriod = useStatisticsStore(state => state.incrementPeriod);
   const currentFocusPeriods = useStatisticsStore(state => state.currentFocusPeriods);
   const currentBreakPeriods = useStatisticsStore(state => state.currentBreakPeriods);
