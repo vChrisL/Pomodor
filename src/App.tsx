@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import {Time} from "./classes/Time.ts";
 import {useTimerStore} from "./stores/TimerStore.ts";
 import {useInterval} from "./util/UseInterval.tsx";
+import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
 
 function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayTodoMenu);
@@ -21,6 +22,10 @@ function App() {
   const [time, setTime] = useState<Time>(new Time(focusTime.getHours,focusTime.getMinutes,focusTime.getSeconds));
 
   const [isFocusPeriod, setIsFocusPeriod] = useState<boolean>(true);
+
+  const incrementPeriod = useStatisticsStore(state => state.incrementPeriod);
+  const currentFocusPeriods = useStatisticsStore(state => state.currentFocusPeriods);
+  const currentBreakPeriods = useStatisticsStore(state => state.currentBreakPeriods);
 
   // Update time when focusTime state changes
   useEffect((): void => {
@@ -39,12 +44,15 @@ function App() {
 
     // if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
 
+    // Switch timers when current timer is over
     if(tmpTime.isTimerOver) {
       const toggledFocusPeriod = !isFocusPeriod;
       setIsFocusPeriod(toggledFocusPeriod);
 
       setTimer(toggledFocusPeriod);
       setProgress(0);
+
+      incrementPeriod(isFocusPeriod);
       return;
     }
 
@@ -132,8 +140,8 @@ function App() {
           hidden flex-row justify-center items-center gap-8 overflow-x-auto py-2
           sm:flex
         `}>
-          <CounterCard message={"Current Focus Periods"} count={3}></CounterCard>
-          <CounterCard message={"Current Break Periods"} count={2}></CounterCard>
+          <CounterCard message={"Current Focus Periods"} count={currentFocusPeriods}></CounterCard>
+          <CounterCard message={"Current Break Periods"} count={currentBreakPeriods}></CounterCard>
           <CounterCard message={"Total Focus Periods"} count={25}></CounterCard>
           <CounterCard message={"Total Break Periods"} count={20}></CounterCard>
         </div>
