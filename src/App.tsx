@@ -28,9 +28,10 @@ function App() {
   }, [focusTime]);
 
 
-  // Handles timer running logic
   const date: Date = new Date();
   const [progress, setProgress] = useState<number>(0);
+
+  // Handles timer running logic
   useInterval(() => {
     if(!isTimerRunning) return;
 
@@ -62,6 +63,10 @@ function App() {
     setTime(tmpTime);
   }, 100);
 
+  /**
+   * Handles updating the timer to match focus or break period.
+   * @param state isFocusPeriod state.
+   */
   function setTimer(state: boolean): void {
     if(state) {
       setTime(new Time(focusTime.getHours, focusTime.getMinutes, focusTime.getSeconds))
@@ -71,8 +76,12 @@ function App() {
     }
   }
 
+  /**
+   * Handles animating the SVG wave progress indicator according to timer progress.
+   */
   function calculateSVGProgress() {
     const y = (time.getHours * 3600) + (time.getMinutes * 60) + time.getSeconds;
+
     if(isFocusPeriod) {
       const x = (focusTime.getHours * 3600) + (focusTime.getMinutes * 60) + focusTime.getSeconds;
       const progPercent = 1 - (y/x);
