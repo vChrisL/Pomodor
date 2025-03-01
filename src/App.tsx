@@ -132,7 +132,15 @@ function App() {
             <Button
               buttonText={"RESET"}
               onClickEvent={ (): void => { setTimer(isFocusPeriod); setProgress(0) } }
-              styles={`${isTimerRunning ? 'hidden' : ''}`}/>
+              styles={`${!isTimerRunning && !(time.equals(focusTime) || time.equals(breakTime)) ? '' : 'hidden'}`}/>
+            <Button
+              buttonText={"SWITCH"}
+              onClickEvent={ (): void => {
+                setIsFocusPeriod(!isFocusPeriod);
+                setTimer(!isFocusPeriod);
+                setProgress(0);
+              }}
+              styles={`${!isTimerRunning && (time.equals(focusTime) || time.equals(breakTime)) ? '' : 'hidden'}`}/>
           </div>
         </div>
 
