@@ -30,22 +30,26 @@ function App() {
 
   // Handles timer running logic
   const date: Date = new Date();
+  const [progress, setProgress] = useState<number>(0);
   useInterval(() => {
     if(!isTimerRunning) return;
 
     const tmpTime = new Time(time.getHours, time.getMinutes, time.getSeconds);
 
-    if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
+    // if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
 
     if(tmpTime.isTimerOver) {
       const toggledFocusPeriod = !isFocusPeriod;
       setIsFocusPeriod(toggledFocusPeriod);
 
       setTimer(toggledFocusPeriod);
+      setProgress(0);
       return;
     }
 
-    // tmpTime.seconds = tmpTime.getSeconds - 12;
+    tmpTime.seconds = tmpTime.getSeconds - 12;
+    calculateSVGProgress();
+
     if(tmpTime.getSeconds <= 0 && tmpTime.getMinutes > 0) {
       tmpTime.seconds = 59;
       tmpTime.minutes = tmpTime.getMinutes - 1;
@@ -67,6 +71,20 @@ function App() {
     }
   }
 
+  function calculateSVGProgress() {
+    const y = (time.getHours * 3600) + (time.getMinutes * 60) + time.getSeconds;
+    if(isFocusPeriod) {
+      const x = (focusTime.getHours * 3600) + (focusTime.getMinutes * 60) + focusTime.getSeconds;
+      const progPercent = 1 - (y/x);
+      setProgress(15 * progPercent);
+    }
+    else {
+      const x = (breakTime.getHours * 3600) + (breakTime.getMinutes * 60) + breakTime.getSeconds;
+      const progPercent = 1 - (y/x);
+      setProgress(15 * progPercent);
+    }
+  }
+
   return (
     <>
       <aside className={`
@@ -84,7 +102,7 @@ function App() {
         <h1 className={"text-2xl"}>POMODORO</h1>
 
         <div id={"timerContainer"} className={"flex flex-col justify-center items-center gap-8"}>
-          <TimerComponent time={time} isFocusPeriod={isFocusPeriod}></TimerComponent>
+          <TimerComponent time={time} isFocusPeriod={isFocusPeriod} progress={progress}></TimerComponent>
 
           <div className={"flex flex-row justify-center gap-8"}>
             <Button
@@ -96,7 +114,7 @@ function App() {
               styles={`${isTimerRunning ? '' : 'hidden'}`}/>
             <Button
               buttonText={"RESET"}
-              onClickEvent={ (): void => setTimer(isFocusPeriod) }
+              onClickEvent={ (): void => { setTimer(isFocusPeriod); setProgress(0) } }
               styles={`${isTimerRunning ? 'hidden' : ''}`}/>
           </div>
         </div>
