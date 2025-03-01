@@ -6,6 +6,11 @@ type StatisticsStore = {
   incrementPeriod: (isFocusPeriod: boolean) => void,
 }
 
+/**
+ * @property currentFocusPeriods Represents the current number of focus periods during the current session.
+ * @property currentBreakPeriods Represents the current number of break periods during the current session.
+ * @property incrementPeriod (Function) Handles incrementing the appropriate period according to the isFocusPeriod boolean parameter.
+ */
 export const useStatisticsStore = create<StatisticsStore>(set => ({
   currentFocusPeriods: 0,
   currentBreakPeriods: 0,
