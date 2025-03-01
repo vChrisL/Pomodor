@@ -75,4 +75,8 @@ export class Time {
   public get isTimerOver(): boolean {
     return this.getHours === 0 && this.getMinutes === 0 && this.getSeconds === 0;
   }
+
+  public equals(time: Time): boolean {
+    return this.getHours === time.getHours && this.getMinutes === time.getMinutes && this.getSeconds === time.getSeconds;
+  }
 }
