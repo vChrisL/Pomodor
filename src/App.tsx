@@ -128,9 +128,9 @@ function App() {
 
       <main className={`
         transition-colors duration-150 ease-in
-        flex flex-col gap-16 h-[calc(100%-4rem)]
+        flex flex-col gap-16 h-[calc(100%-4rem)] bg-[var(--primary-bg-color)]
         dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
-        sm:p-4 sm:w-[calc(100%-20%)] sm:bg-[var(--primary-bg-color)] sm:h-full
+        sm:p-4 sm:w-[calc(100%-20%)] sm:h-full
         ${displayTodoMenu || displayStatsMenu ? 'hidden' : ''}
       `}>
         <div className={"flex flex-col gap-4"}>
