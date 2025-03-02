@@ -27,6 +27,11 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
    * Handle applying changes to Focus and Break timer periods.
    */
   function handleSaveSettings() {
+    const focusTimeTotalSeconds = (newFocusTime[0] * 3600) + (newFocusTime[1] * 60) + newFocusTime[2];
+    const breakTimeTotalSeconds = (newBreakTime[0] * 3600) + (newBreakTime[1] * 60) + newBreakTime[2];
+
+    if(focusTimeTotalSeconds === 0 || breakTimeTotalSeconds === 0) return;
+
     setFocusTimer(new Time(newFocusTime[0], newFocusTime[1], newFocusTime[2]));
     setBreakTimer(new Time(newBreakTime[0], newBreakTime[1], newBreakTime[2]))
     setShowSettings(!showSettings)
