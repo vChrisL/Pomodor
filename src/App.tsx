@@ -11,6 +11,7 @@ import {useTimerStore} from "./stores/TimerStore.ts";
 import {useInterval} from "./util/UseInterval.tsx";
 import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
 import {MobileStatsMenu} from "./components/StatsMenuComponent.tsx";
+import {Reminder} from "./components/ReminderComponent.tsx";
 
 function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayMenu);
@@ -117,12 +118,14 @@ function App() {
       </aside>
 
       <main className={`
-        flex flex-col gap-24 
+        flex flex-col gap-16 
         sm:p-4 sm:w-[calc(100%-20%)] sm:bg-[var(--primary-bg-color)]
         ${displayTodoMenu || displayStatsMenu ? 'hidden' : ''}
       `}>
-        <h1 className={"text-2xl"}>POMODORO</h1>
-
+        <div className={"flex flex-col gap-4"}>
+          <h1 className={"text-2xl"}>POMODORO</h1>
+          <Reminder isFocusPeriod={isFocusPeriod}/>
+        </div>
         <div id={"timerContainer"} className={"flex flex-col justify-center items-center gap-8"}>
           <TimerComponent time={time} isFocusPeriod={isFocusPeriod} progress={progress}></TimerComponent>
 
