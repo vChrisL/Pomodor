@@ -9,7 +9,7 @@ export function FocusTimerInput({time, setNewTime}: TimerInputProps) {
   const focusTimer = useTimerStore(state => state.focusTimer);
 
   return (
-    <div className={"flex flex-row gap-1"}>
+    <div className={"flex flex-row gap-1 text-[var(--text-color)]"}>
       <input
         type={"number"}
         defaultValue={focusTimer.getHours}
@@ -49,7 +49,7 @@ export function BreakTimerInput({time, setNewTime}: TimerInputProps) {
   const breakTimer = useTimerStore(state => state.breakTimer);
 
   return (
-    <div className={"flex flex-row gap-1"}>
+    <div className={"flex flex-row gap-1 text-[var(--text-color)]"}>
       <input
         type={"number"}
         defaultValue={breakTimer.getHours}

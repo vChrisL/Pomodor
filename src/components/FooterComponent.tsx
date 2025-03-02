@@ -1,5 +1,6 @@
-import {MenuIcon, MoonIcon, TrophyIcon} from "./IconComponents.tsx";
+import {MenuIcon, TrophyIcon} from "./IconComponents.tsx";
 import {useStatsMenuStore, useTodoMenuStore} from "../stores/MenuStore.ts";
+import {ThemeButton} from "./ToggleThemeComponent.tsx";
 
 export function FooterBar() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayMenu);
@@ -10,7 +11,9 @@ export function FooterBar() {
 
   return (
     <footer className={`
-      flex flex-row justify-center items-center gap-8
+      transition-colors duration-150 ease-in
+      flex flex-row justify-center items-center gap-8 h-16
+      dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
       sm:hidden
     `}>
       <button onClick={(): void => setDisplayStatsMenu(!displayStatsMenu)}>
@@ -19,9 +22,7 @@ export function FooterBar() {
       <button onClick={(): void => setDisplayTodoMenu(!displayTodoMenu)}>
         <MenuIcon svgClass={"w-12 h-12 fill-gray-300"}></MenuIcon>
       </button>
-      <button>
-        <MoonIcon svgClass={"w-8 h-8 fill-gray-300"}></MoonIcon>
-      </button>
+      <ThemeButton/>
     </footer>
   );
 }

@@ -128,12 +128,13 @@ function App() {
 
       <main className={`
         transition-colors duration-150 ease-in
-        flex flex-col gap-16 dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
-        sm:p-4 sm:w-[calc(100%-20%)] sm:bg-[var(--primary-bg-color)]
+        flex flex-col gap-16 h-[calc(100%-4rem)]
+        dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
+        sm:p-4 sm:w-[calc(100%-20%)] sm:bg-[var(--primary-bg-color)] sm:h-full
         ${displayTodoMenu || displayStatsMenu ? 'hidden' : ''}
       `}>
         <div className={"flex flex-col gap-4"}>
-          <h1 className={"text-2xl"}>POMODORO</h1>
+          <h1 className={"text-2xl p-4 sm:p-0"}>POMODORO</h1>
           <Reminder isFocusPeriod={isFocusPeriod}/>
         </div>
 
