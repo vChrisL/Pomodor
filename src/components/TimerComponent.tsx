@@ -14,12 +14,12 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
   const [showSettings, setShowSettings] = useState<boolean>(false);
 
   // Focus timer
-  const focusTimer = useTimerStore(state => state.focusTimer);
+  const focusTimer: Time = useTimerStore(state => state.focusTimer);
   const setFocusTimer = useTimerStore(state => state.setFocusTimer);
   const [newFocusTime, setNewFocusTime] = useState<number[]>([focusTimer.getHours, focusTimer.getMinutes, focusTimer.getSeconds]);
 
   // Break timer
-  const breakTimer = useTimerStore(state => state.breakTimer);
+  const breakTimer: Time = useTimerStore(state => state.breakTimer);
   const setBreakTimer = useTimerStore(state => state.setBreakTimer);
   const [newBreakTime, setNewBreakTime] = useState<number[]>([breakTimer.getHours, breakTimer.getMinutes, breakTimer.getSeconds]);
 
@@ -27,8 +27,9 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
    * Handle applying changes to Focus and Break timer periods.
    */
   function handleSaveSettings() {
-    const focusTimeTotalSeconds = (newFocusTime[0] * 3600) + (newFocusTime[1] * 60) + newFocusTime[2];
-    const breakTimeTotalSeconds = (newBreakTime[0] * 3600) + (newBreakTime[1] * 60) + newBreakTime[2];
+    // Calculate total focus and break time in seconds
+    const focusTimeTotalSeconds: number = (newFocusTime[0] * 3600) + (newFocusTime[1] * 60) + newFocusTime[2];
+    const breakTimeTotalSeconds: number = (newBreakTime[0] * 3600) + (newBreakTime[1] * 60) + newBreakTime[2];
 
     if(focusTimeTotalSeconds === 0 || breakTimeTotalSeconds === 0) return;
 
