@@ -10,6 +10,7 @@ export function Button({buttonText, onClickEvent, styles}: ButtonProps) {
       className={`
         py-3 px-8 rounded-full 
         bg-[var(--accent-color)] text-[var(--secondary-bg-color)]
+        dark:bg-[var(--dark-accent-color)]
         hover:brightness-90
         active:brightness-80
         ${styles}

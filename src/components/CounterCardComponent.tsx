@@ -7,6 +7,7 @@ export function CounterCard({message, count}: CounterProps) {
   return (
     <div className={`
       flex flex-col gap-3 w-64 h-32 p-4 rounded-lg shadow-md shadow-gray-400 bg-[var(--accent-color)] text-[var(--secondary-bg-color)]
+      dark:bg-[var(--dark-accent-color)]
       sm:w-64 sm:h-40 sm:gap-5
     `}>
       <h1 className={"text-xl"}>{message}</h1>

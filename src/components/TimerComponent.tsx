@@ -53,7 +53,7 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
   return (
     <div className={"relative"}>
       <motion.div
-        className={"w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[var(--accent-color)] overflow-hidden"}
+        className={"w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[var(--accent-color)] overflow-hidden dark:bg-[var(--dark-accent-color)]"}
         transition={{duration: 0.7}}
         animate={{rotateY: showSettings ? 180 : 0}}
       >
