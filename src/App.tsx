@@ -12,6 +12,7 @@ import {useInterval} from "./util/UseInterval.tsx";
 import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
 import {MobileStatsMenu} from "./components/StatsMenuComponent.tsx";
 import {Reminder} from "./components/ReminderComponent.tsx";
+import {ThemeButton} from "./components/ToggleThemeComponent.tsx";
 
 function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayMenu);
@@ -111,14 +112,23 @@ function App() {
   return (
     <>
       <aside className={`
-        hidden w-1/5 bg-[var(--secondary-bg-color)]
-        sm:block sm:p-4
+        transition-colors duration-150 ease-in
+        hidden flex-col justify-between w-1/5 bg-[var(--secondary-bg-color)] 
+        dark:bg-[var(--dark-secondary-bg-color)] dark:text-[var(--dark-text-color)]
+        sm:flex sm:p-4
       `}>
-        <h1 className={"text-2xl"}>TODO</h1>
+        <div>
+          <h1 className={"text-2xl"}>TODO</h1>
+          <div>
+            to-do contents
+          </div>
+        </div>
+        <ThemeButton/>
       </aside>
 
       <main className={`
-        flex flex-col gap-16 
+        transition-colors duration-150 ease-in
+        flex flex-col gap-16 dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
         sm:p-4 sm:w-[calc(100%-20%)] sm:bg-[var(--primary-bg-color)]
         ${displayTodoMenu || displayStatsMenu ? 'hidden' : ''}
       `}>
@@ -126,6 +136,7 @@ function App() {
           <h1 className={"text-2xl"}>POMODORO</h1>
           <Reminder isFocusPeriod={isFocusPeriod}/>
         </div>
+
         <div id={"timerContainer"} className={"flex flex-col justify-center items-center gap-8"}>
           <TimerComponent time={time} isFocusPeriod={isFocusPeriod} progress={progress}></TimerComponent>
 

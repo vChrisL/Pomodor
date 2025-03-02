@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 #root {
   margin: 0;
@@ -11,10 +12,12 @@
 
   --primary-bg-color: #F1F1F1;
   --secondary-bg-color: #FAFAFA;
-
   --accent-color: #a395fc;
-
   --text-color: #000000;
+
+  --dark-primary-bg-color: #232323;
+  --dark-secondary-bg-color: #272727;
+  --dark-text-color: #FAFAFA;
 }
 
 * {
