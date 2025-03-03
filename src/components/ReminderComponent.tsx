@@ -24,6 +24,6 @@ export function Reminder({isFocusPeriod}: ReminderProps) {
   }, [isFocusPeriod]);
 
   return (
-    <h2 className={`invisible text-lg ${!isFocusPeriod ? 'visible' : ''}`}>{message}</h2>
+    <h2 className={`invisible text-lg p-2 h-12 ${!isFocusPeriod ? 'visible' : ''}`}>{message}</h2>
   )
 }
