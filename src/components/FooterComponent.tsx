@@ -16,10 +16,16 @@ export function FooterBar() {
       dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
       sm:hidden
     `}>
-      <button onClick={(): void => setDisplayStatsMenu(!displayStatsMenu)}>
+      <button onClick={(): void => {
+        setDisplayStatsMenu(!displayStatsMenu);
+        setDisplayTodoMenu(false);
+      }}>
         <TrophyIcon svgClass={"w-8 h-8 fill-gray-300"}></TrophyIcon>
       </button>
-      <button onClick={(): void => setDisplayTodoMenu(!displayTodoMenu)}>
+      <button onClick={(): void => {
+        setDisplayTodoMenu(!displayTodoMenu);
+        setDisplayStatsMenu(false);
+      }}>
         <MenuIcon svgClass={"w-12 h-12 fill-gray-300"}></MenuIcon>
       </button>
       <ThemeButton/>
