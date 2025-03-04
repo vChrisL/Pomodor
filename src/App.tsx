@@ -13,11 +13,15 @@ import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
 import {MobileStatsMenu} from "./components/StatsMenuComponent.tsx";
 import {Reminder} from "./components/ReminderComponent.tsx";
 import {ThemeButton} from "./components/ToggleThemeComponent.tsx";
+import {useTodoListStore} from "./stores/TodoListStore.ts";
+import {TodoItem} from "./components/TodoItemComponent.tsx";
 
 function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayMenu);
   const displayStatsMenu: boolean = useStatsMenuStore(state => state.displayMenu);
 
+  // To-do variables
+  const todoItems = useTodoListStore(state => state.todoItems);
 
   // Timer variables
   const focusTime = useTimerStore(state => state.focusTimer);
@@ -119,8 +123,23 @@ function App() {
       `}>
         <div>
           <h1 className={"text-2xl"}>TODO</h1>
-          <div>
-            to-do contents
+          <div className={"flex flex-col gap-1"}>
+            {
+              todoItems.map((item) =>
+                <TodoItem item={item}/>
+              )
+            }
+            <button
+              onClick={(): void => {
+                console.log("add item")
+              }}
+              className={`
+                w-full p-2 bg-[var(--accent-color)] rounded-lg
+                hover:brightness-90
+                active:brightness-80
+              `}>
+              Add an item
+            </button>
           </div>
         </div>
         <ThemeButton/>
