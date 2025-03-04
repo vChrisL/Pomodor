@@ -12,16 +12,13 @@ import {useInterval} from "./util/UseInterval.tsx";
 import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
 import {MobileStatsMenu} from "./components/StatsMenuComponent.tsx";
 import {Reminder} from "./components/ReminderComponent.tsx";
-import {ThemeButton} from "./components/ToggleThemeComponent.tsx";
-import {useTodoListStore} from "./stores/TodoListStore.ts";
-import {TodoItem} from "./components/TodoItemComponent.tsx";
+import {TodoSidebar} from "./components/TodoSidebarComponent.tsx";
+
 
 function App() {
   const displayTodoMenu: boolean = useTodoMenuStore(state => state.displayMenu);
   const displayStatsMenu: boolean = useStatsMenuStore(state => state.displayMenu);
 
-  // To-do variables
-  const todoItems = useTodoListStore(state => state.todoItems);
 
   // Timer variables
   const focusTime = useTimerStore(state => state.focusTimer);
@@ -115,35 +112,7 @@ function App() {
 
   return (
     <>
-      <aside className={`
-        transition-colors duration-150 ease-in
-        hidden flex-col justify-between w-1/5 bg-[var(--secondary-bg-color)] 
-        dark:bg-[var(--dark-secondary-bg-color)] dark:text-[var(--dark-text-color)]
-        sm:flex sm:p-4
-      `}>
-        <div>
-          <h1 className={"text-2xl"}>TODO</h1>
-          <div className={"flex flex-col gap-1"}>
-            {
-              todoItems.map((item) =>
-                <TodoItem item={item}/>
-              )
-            }
-            <button
-              onClick={(): void => {
-                console.log("add item")
-              }}
-              className={`
-                w-full p-2 bg-[var(--accent-color)] rounded-lg
-                hover:brightness-90
-                active:brightness-80
-              `}>
-              Add an item
-            </button>
-          </div>
-        </div>
-        <ThemeButton/>
-      </aside>
+      <TodoSidebar></TodoSidebar>
 
       <main className={`
         transition-colors duration-150 ease-in
