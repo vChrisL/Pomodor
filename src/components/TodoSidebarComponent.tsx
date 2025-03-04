@@ -46,9 +46,7 @@ export function TodoSidebar() {
                   Add
                 </button>
                 <button
-                  onClick={(): void => {
-                    setIsCreatingItem(false);
-                  }}
+                  onClick={ (): void => setIsCreatingItem(false) }
                   className={`
                     w-fit py-1 px-2 bg-[var(--accent-color)] rounded-lg
                     hover:brightness-90
@@ -63,9 +61,7 @@ export function TodoSidebar() {
 
           {!isCreatingItem && (
             <button
-              onClick={(): void => {
-                setIsCreatingItem(true);
-              }}
+              onClick={ (): void => setIsCreatingItem(true) }
               className={`
                   w-full p-2 bg-[var(--accent-color)] rounded-lg
                   hover:brightness-90
