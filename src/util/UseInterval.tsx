@@ -1,5 +1,10 @@
 import { useEffect, useRef } from 'react';
 
+/**
+ * Variant of the `setInterval` function with `useEffect`.
+ * @param callback The function that is invoked on each interval tick.
+ * @param delay The interval (delay) between each interval tick.
+ */
 export function useInterval(callback: () => void, delay: number) {
   const savedCallback = useRef(callback);
 
