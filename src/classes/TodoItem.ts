@@ -2,6 +2,10 @@ export class TodoItem {
   private _isComplete: boolean = false;
   private _title: string = "";
 
+  constructor(title: string) {
+    this.title = title;
+  }
+
   // Getter setter for isComplete state
   public get getIsComplete():boolean { return this._isComplete; }
   public set isComplete(value: boolean) { this._isComplete = value; }
