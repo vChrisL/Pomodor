@@ -1,9 +1,11 @@
 export class TodoItem {
   private _isComplete: boolean = false;
   private _title: string = "";
+  private readonly _key: string = "";
 
   constructor(title: string) {
     this.title = title;
+    this._key = `item-${title.substring(1, title.length - 1)}-${new Date().getTime()}`;
   }
 
   // Getter setter for isComplete state
@@ -15,6 +17,9 @@ export class TodoItem {
   private set title(value: string) {
     this._title = value;
   }
+
+  // Getter for unique key
+  public get getKey(): string { return this._key; }
 
   /**
    * Sets the title of a to-do item.
