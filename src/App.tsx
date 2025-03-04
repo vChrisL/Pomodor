@@ -53,7 +53,7 @@ function App() {
 
     const tmpTime = new Time(time.getHours, time.getMinutes, time.getSeconds);
 
-    // if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
+    if(new Date().getSeconds() - date.getSeconds() >= 1) tmpTime.seconds = tmpTime.getSeconds - 1;
 
     // Switch timers when current timer is over
     if(tmpTime.isTimerOver) {
@@ -67,7 +67,7 @@ function App() {
       return;
     }
 
-    tmpTime.seconds = tmpTime.getSeconds - 12;
+    // tmpTime.seconds = tmpTime.getSeconds - 12;
     calculateSVGProgress();
 
     if(tmpTime.getSeconds <= 0 && tmpTime.getMinutes > 0) {
