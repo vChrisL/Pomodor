@@ -27,9 +27,10 @@ export function TodoSidebar() {
             )
           }
           {isCreatingItem && (
-            <div className={"flex flex-col gap-1 p-2"}>
+            <form className={"flex flex-col gap-1 p-2"}>
               <textarea
                 className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)]"}
+                autoFocus={true}
                 placeholder={"Add an item"}
               />
               <div className={"flex flex-row gap-2"}>
@@ -56,7 +57,7 @@ export function TodoSidebar() {
                   Cancel
                 </button>
               </div>
-            </div>
+            </form>
           )}
 
           {!isCreatingItem && (
