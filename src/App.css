@@ -32,7 +32,7 @@
   #root {
     @apply
     flex flex-col justify-between
-    sm:flex-row sm:justify-normal
+    lg:flex-row lg:justify-normal
   }
 
   button {

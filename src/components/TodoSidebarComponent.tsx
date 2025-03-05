@@ -34,7 +34,7 @@ export function TodoSidebar() {
         transition-colors duration-150 ease-in
         hidden flex-col justify-between w-1/5 bg-[var(--secondary-bg-color)] 
         dark:bg-[var(--dark-secondary-bg-color)] dark:text-[var(--dark-text-color)]
-        sm:flex sm:p-4
+        lg:flex lg:p-4
     `}>
       <div>
         <h1 className={"text-2xl pb-4"}>TO-DO</h1>

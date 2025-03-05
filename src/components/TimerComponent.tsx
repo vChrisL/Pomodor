@@ -53,7 +53,7 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
   return (
     <div className={"relative"}>
       <motion.div
-        className={"w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[var(--accent-color)] overflow-hidden dark:bg-[var(--dark-accent-color)]"}
+        className={"w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-[var(--accent-color)] overflow-hidden dark:bg-[var(--dark-accent-color)]"}
         transition={{duration: 0.7}}
         animate={{rotateY: showSettings ? 180 : 0}}
       >
@@ -120,13 +120,13 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
       >
         <div
           className={"flex flex-col gap-2 justify-center items-center absolute top-0 right-1/2 translate-x-1/2 translate-y-[100%]"}>
-          <p className={"text-[var(--secondary-bg-color)] sm:text-xl"}>Focus Period</p>
+          <p className={"text-[var(--secondary-bg-color)] lg:text-xl"}>Focus Period</p>
           <FocusTimerInput time={newFocusTime} setNewTime={setNewFocusTime}/>
         </div>
 
         <div
           className={"flex flex-col gap-2 justify-center items-center absolute top-0 right-1/2 translate-x-1/2 translate-y-[250%]"}>
-          <p className={"text-[var(--secondary-bg-color)] sm:text-xl"}>Break Period</p>
+          <p className={"text-[var(--secondary-bg-color)] lg:text-xl"}>Break Period</p>
           <BreakTimerInput time={newBreakTime} setNewTime={setNewBreakTime}/>
         </div>
 
@@ -134,7 +134,7 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
           className={"flex flex-row gap-4 justify-center items-center absolute bottom-0 right-1/2 translate-x-1/2 -translate-y-[250%]"}>
           <button
             className={`
-              text-[var(--secondary-bg-color)] sm:text-xl
+              text-[var(--secondary-bg-color)] lg:text-xl
               hover:brightness-90
               active:brightness-[85%]
             `}
@@ -144,7 +144,7 @@ export function TimerComponent({time, isFocusPeriod, progress}: TimerProps) {
           </button>
           <button
             className={`
-              text-[var(--secondary-bg-color)] sm:text-xl
+              text-[var(--secondary-bg-color)] lg:text-xl
               hover:brightness-90
               active:brightness-[85%]
             `}
