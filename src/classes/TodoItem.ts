@@ -4,7 +4,7 @@ export class TodoItem {
   private readonly _key: string = "";
 
   constructor(title: string) {
-    this.title = title;
+    if (!this.trySetTitle(title)) throw new Error("Title is invalid");
     this._key = `item-${title.substring(1, title.length - 1)}-${new Date().getTime()}`;
   }
 
