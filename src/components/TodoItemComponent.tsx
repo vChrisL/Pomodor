@@ -14,6 +14,7 @@ export function TodoItem({item}: TodoItemProps) {
       className={`
         flex flex-row gap-2 p-1 items-start rounded-lg
         hover:bg-[var(--primary-bg-color)]
+        dark:hover:bg-[var(--dark-primary-bg-color)]
       `}
     >
       <input
