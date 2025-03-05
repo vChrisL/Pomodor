@@ -1,4 +1,5 @@
 import {TodoItem} from "./TodoItemComponent.tsx";
+import {TodoItem as TodoItemType} from "../classes/TodoItem.ts";
 import {ThemeButton} from "./ToggleThemeComponent.tsx";
 import {useTodoListStore} from "../stores/TodoListStore.ts";
 import {useRef, useState} from "react";
@@ -7,6 +8,7 @@ import {useOnClickOutside} from "../util/onClickOutside.tsx";
 
 export function TodoSidebar() {
   // To-do variables
+  const [todoItemTitle, setTodoItemTitle] = useState<string>("");
   const todoItems = useTodoListStore(state => state.todoItems);
   const addTodoItem = useTodoListStore(state => state.addItem);
 
@@ -16,6 +18,16 @@ export function TodoSidebar() {
   useOnClickOutside(formRef, (): void => {
     setIsCreatingItem(false)
   });
+
+  function handleAddItem(): void {
+    try {
+      const item: TodoItemType = new TodoItemType(todoItemTitle);
+      addTodoItem(item);
+      setIsCreatingItem(false);
+    } catch {
+      return;
+    }
+  }
 
   return (
     <aside className={`
@@ -41,11 +53,13 @@ export function TodoSidebar() {
                 className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)]"}
                 autoFocus={true}
                 placeholder={"Add an item"}
+                onChange={(e): void => setTodoItemTitle(e.target.value)}
               />
               <div className={"flex flex-row gap-2"}>
                 <button
-                  onClick={() => {
-                    console.log("create new item")
+                  onClick={(e): void => {
+                    e.preventDefault();
+                    handleAddItem();
                   }}
                   className={`
                     w-fit py-1 px-2 bg-[var(--accent-color)] rounded-lg
