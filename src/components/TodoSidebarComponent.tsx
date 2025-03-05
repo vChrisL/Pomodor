@@ -29,7 +29,7 @@ export function TodoSidebar() {
           {isCreatingItem && (
             <form className={"flex flex-col gap-1 p-2"}>
               <textarea
-                className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)]"}
+                className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)]"}
                 autoFocus={true}
                 placeholder={"Add an item"}
               />
