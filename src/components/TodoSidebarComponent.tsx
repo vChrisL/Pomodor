@@ -1,7 +1,8 @@
 import {TodoItem} from "./TodoItemComponent.tsx";
 import {ThemeButton} from "./ToggleThemeComponent.tsx";
 import {useTodoListStore} from "../stores/TodoListStore.ts";
-import {useState} from "react";
+import {useRef, useState} from "react";
+import {useOnClickOutside} from "../util/onClickOutside.tsx";
 
 
 export function TodoSidebar() {
@@ -10,6 +11,11 @@ export function TodoSidebar() {
   const addTodoItem = useTodoListStore(state => state.addItem);
 
   const [isCreatingItem, setIsCreatingItem] = useState<boolean>(false);
+
+  const formRef = useRef(null);
+  useOnClickOutside(formRef, (): void => {
+    setIsCreatingItem(false)
+  });
 
   return (
     <aside className={`
@@ -27,7 +33,10 @@ export function TodoSidebar() {
             )
           }
           {isCreatingItem && (
-            <form className={"flex flex-col gap-1 p-2"}>
+            <form
+              ref={formRef}
+              className={"flex flex-col gap-1 p-2"}
+            >
               <textarea
                 className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)]"}
                 autoFocus={true}
