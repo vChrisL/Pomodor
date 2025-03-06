@@ -5,7 +5,7 @@ type TodoListStore = {
   todoItems: TodoItem[],
   addItem: (item: TodoItem) => void,
   modifyItemTitle: (target: TodoItem, newTitle: string) => void,
-  // deleteItem: () => void,
+  deleteItem: (target: TodoItem) => void,
 }
 
 export const useTodoListStore = create<TodoListStore>(set => ({
@@ -27,6 +27,15 @@ export const useTodoListStore = create<TodoListStore>(set => ({
       const tmpTodoItems: TodoItem[] = [...state.todoItems];
 
       if (!tmpTodoItems[itemIndex].trySetTitle(newTitle)) return {todoItems: [...state.todoItems]};
+
+      return {todoItems: tmpTodoItems}
+    });
+  },
+  deleteItem: (target: TodoItem): void => {
+    set(state => {
+      const itemIndex: number = state.todoItems.indexOf(target);
+      const tmpTodoItems: TodoItem[] = [...state.todoItems];
+      tmpTodoItems.splice(itemIndex, 1);
 
       return {todoItems: tmpTodoItems}
     })
