@@ -8,6 +8,13 @@ type TodoListStore = {
   deleteItem: (target: TodoItem) => void,
 }
 
+/**
+ * Store for to-do list items.
+ * @param todoItems An array containing all to-do list items.
+ * @param addItem (Function) Add a new item to the to-do items array. Accepts one argument; `item` of type `TodoItem`.
+ * @param modifyItemTitle (Function) Modifies the target item's title. Accepts two arguments; `target` of type `TodoItem` and `newTitle` of type `string`.
+ * @param deleteItem (Function) Removes the target item from the to-do items array. Accepts one argument; `target` of type `TodoItem`.
+ */
 export const useTodoListStore = create<TodoListStore>(set => ({
   todoItems: [
     new TodoItem("Implement adding todo items"),
