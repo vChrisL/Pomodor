@@ -14,6 +14,7 @@ export function TodoItem({item}: TodoItemProps) {
   const [modifiedTitle, setModifiedTitle] = useState<string>("");
 
   const modifyItemTitle = useTodoListStore(state => state.modifyItemTitle);
+  const deleteItem = useTodoListStore(state => state.deleteItem);
 
   const formRef = useRef(null);
   useOnClickOutside(formRef, (): void => {
@@ -23,6 +24,12 @@ export function TodoItem({item}: TodoItemProps) {
   function handleSave(): void {
     console.log("save")
     modifyItemTitle(item, modifiedTitle);
+    setIsEditing(false);
+  }
+
+  function handleDelete(): void {
+    console.log("delete")
+    deleteItem(item);
     setIsEditing(false);
   }
 
@@ -64,29 +71,44 @@ export function TodoItem({item}: TodoItemProps) {
             defaultValue={item.getTitle}
             onChange={(e): void => setModifiedTitle(e.target.value)}
           />
-          <div className={"flex flex-row gap-2"}>
+          <div className={"flex flex-row justify-between"}>
+            <div className={"flex flex-row gap-2"}>
+              <button
+                onClick={(e): void => {
+                  e.preventDefault();
+                  handleSave();
+                }}
+                className={`
+                  w-fit py-1 px-2 bg-[var(--accent-color)] rounded-lg
+                  hover:brightness-90
+                  active:brightness-80
+                `}
+              >
+                Save
+              </button>
+              <button
+                onClick={(): void => setIsEditing(false)}
+                className={`
+                      w-fit py-1 px-2 bg-[var(--accent-color)] rounded-lg
+                      hover:brightness-90
+                      active:brightness-80
+                    `}
+              >
+                Cancel
+              </button>
+            </div>
             <button
               onClick={(e): void => {
                 e.preventDefault();
-                handleSave();
+                handleDelete();
               }}
-              className={`
-                w-fit py-1 px-2 bg-[var(--accent-color)] rounded-lg
-                hover:brightness-90
-                active:brightness-80
-              `}
-            >
-              Save
-            </button>
-            <button
-              onClick={(): void => setIsEditing(false)}
               className={`
                     w-fit py-1 px-2 bg-[var(--accent-color)] rounded-lg
                     hover:brightness-90
                     active:brightness-80
                   `}
             >
-              Cancel
+              Delete
             </button>
           </div>
         </form>
