@@ -21,14 +21,18 @@ export function TodoItem({item}: TodoItemProps) {
     setIsEditing(false)
   });
 
+  /**
+   * Handle saving the item title.
+   */
   function handleSave(): void {
-    console.log("save")
     modifyItemTitle(item, modifiedTitle);
     setIsEditing(false);
   }
 
+  /**
+   * Handle deleting the item.
+   */
   function handleDelete(): void {
-    console.log("delete")
     deleteItem(item);
     setIsEditing(false);
   }
