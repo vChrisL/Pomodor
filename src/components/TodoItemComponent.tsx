@@ -1,6 +1,7 @@
 import {TodoItem as TodoItemType} from "../classes/TodoItem.ts";
 import {useRef, useState} from "react";
 import {useOnClickOutside} from "../util/onClickOutside.tsx";
+import {useTodoListStore} from "../stores/TodoListStore.ts";
 
 type TodoItemProps = {
   item: TodoItemType
@@ -12,6 +13,8 @@ export function TodoItem({item}: TodoItemProps) {
 
   const [modifiedTitle, setModifiedTitle] = useState<string>("");
 
+  const modifyItemTitle = useTodoListStore(state => state.modifyItemTitle);
+
   const formRef = useRef(null);
   useOnClickOutside(formRef, (): void => {
     setIsEditing(false)
@@ -19,6 +22,8 @@ export function TodoItem({item}: TodoItemProps) {
 
   function handleSave(): void {
     console.log("save")
+    modifyItemTitle(item, modifiedTitle);
+    setIsEditing(false);
   }
 
   return(
