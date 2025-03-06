@@ -4,7 +4,7 @@ import {TodoItem} from "../classes/TodoItem.ts";
 type TodoListStore = {
   todoItems: TodoItem[],
   addItem: (item: TodoItem) => void,
-  // modifyItemTitle: () => void,
+  modifyItemTitle: (target: TodoItem, newTitle: string) => void,
   // deleteItem: () => void,
 }
 
@@ -20,5 +20,15 @@ export const useTodoListStore = create<TodoListStore>(set => ({
     set(state => {
       return {todoItems: [...state.todoItems, item]}
     });
+  },
+  modifyItemTitle: (target: TodoItem, newTitle: string): void => {
+    set(state => {
+      const itemIndex: number = state.todoItems.indexOf(target);
+      const tmpTodoItems: TodoItem[] = [...state.todoItems];
+
+      if (!tmpTodoItems[itemIndex].trySetTitle(newTitle)) return {todoItems: [...state.todoItems]};
+
+      return {todoItems: tmpTodoItems}
+    })
   }
 }));
