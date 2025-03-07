@@ -11,9 +11,7 @@ export function MobileStatsMenu() {
     <div className={"w-full h-full z-10 bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]"}>
       <h1 className={"text-2xl p-4"}>STATISTICS</h1>
 
-      <div className={`
-          flex flex-col justify-center items-center gap-4 overflow-x-auto py-2
-        `}>
+      <div className={`flex flex-col justify-center items-center gap-4 overflow-x-auto py-2 mt-10`}>
         <CounterCard message={"Current Focus Periods"} count={currentFocusPeriods}></CounterCard>
         <CounterCard message={"Current Break Periods"} count={currentBreakPeriods}></CounterCard>
         <CounterCard message={"Total Focus Periods"} count={totalFocusPeriods}></CounterCard>
