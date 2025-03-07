@@ -116,9 +116,9 @@ function App() {
 
       <main className={`
         transition-colors duration-150 ease-in
-        flex flex-col gap-16 h-[calc(100%-4rem)] bg-[var(--primary-bg-color)]
+        flex flex-col gap-4 h-[calc(100%-4rem)] bg-[var(--primary-bg-color)]
         dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
-        lg:p-4 lg:w-[calc(100%-20%)] lg:h-full
+        lg:p-4 lg:w-[calc(100%-20%)] lg:h-full xl:gap-16
         ${displayTodoMenu || displayStatsMenu ? 'hidden' : ''}
       `}>
         <div className={"flex flex-col gap-4"}>
@@ -153,7 +153,7 @@ function App() {
         </div>
 
         <div className={`
-          hidden flex-row justify-center items-center gap-8 overflow-x-auto py-2
+          hidden flex-row justify-center items-center gap-8 overflow-x-auto py-2 
           lg:flex
         `}>
           <CounterCard message={"Current Focus Periods"} count={currentFocusPeriods}></CounterCard>
