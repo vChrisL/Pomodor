@@ -8,7 +8,7 @@ type TodoItemProps = {
 }
 
 export function TodoItem({item}: TodoItemProps) {
-  const [isChecked, setIsChecked] = useState<boolean>(item.getIsComplete);
+  const [isChecked, setIsChecked] = useState<boolean>(item.IsComplete);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const [modifiedTitle, setModifiedTitle] = useState<string>("");
@@ -60,7 +60,7 @@ export function TodoItem({item}: TodoItemProps) {
               className={`text-lg text-left w-full ${isChecked ? 'line-through' : ''}`}
               onClick={(): void => setIsEditing(true)}
             >
-              {item.getTitle}
+              {item.Title}
             </p>
           </div>
           <hr className={"text-[var(--primary-bg-color)] brightness-90"}/>
@@ -76,7 +76,7 @@ export function TodoItem({item}: TodoItemProps) {
             className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)]"}
             autoFocus={true}
             placeholder={"Add an item"}
-            defaultValue={item.getTitle}
+            defaultValue={item.Title}
             onChange={(e): void => setModifiedTitle(e.target.value)}
           />
           <div className={"flex flex-row justify-between"}>
