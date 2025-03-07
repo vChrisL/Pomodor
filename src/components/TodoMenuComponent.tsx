@@ -33,7 +33,7 @@ export function MobileTodoMenu() {
         <div className={"flex flex-col gap-1"}>
           {
             todoItems.map((item) =>
-              <TodoItem key={item.getKey} item={item}/>
+              <TodoItem key={item.Key} item={item}/>
             )
           }
           {isCreatingItem && (
