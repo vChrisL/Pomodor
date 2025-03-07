@@ -14,6 +14,7 @@ export function TodoItem({item}: TodoItemProps) {
   const [modifiedTitle, setModifiedTitle] = useState<string>("");
 
   const modifyItemTitle = useTodoListStore(state => state.modifyItemTitle);
+  const modifyItemCheckState = useTodoListStore(state => state.modifyItemCheckState);
   const deleteItem = useTodoListStore(state => state.deleteItem);
 
   const formRef = useRef(null);
@@ -51,9 +52,10 @@ export function TodoItem({item}: TodoItemProps) {
             <input
               className={"mt-2"}
               type={"checkbox"}
-              defaultChecked={false}
+              defaultChecked={item.IsComplete}
               onChange={(e) => {
                 setIsChecked(e.target.checked);
+                modifyItemCheckState(item, e.target.checked);
               }}
             />
             <p
