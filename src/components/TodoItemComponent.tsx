@@ -47,7 +47,6 @@ export function TodoItem({item}: TodoItemProps) {
               hover:bg-[var(--primary-bg-color)]
               dark:hover:bg-[var(--dark-primary-bg-color)]
             `}
-            onClick={(): void => setIsEditing(true)}
           >
             <input
               className={"mt-2"}
@@ -57,7 +56,12 @@ export function TodoItem({item}: TodoItemProps) {
                 setIsChecked(e.target.checked);
               }}
             />
-            <p className={`text-lg text-left ${isChecked ? 'line-through' : ''}`}>{item.getTitle}</p>
+            <p
+              className={`text-lg text-left w-full ${isChecked ? 'line-through' : ''}`}
+              onClick={(): void => setIsEditing(true)}
+            >
+              {item.getTitle}
+            </p>
           </div>
           <hr className={"text-[var(--primary-bg-color)] brightness-90"}/>
         </>
