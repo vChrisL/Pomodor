@@ -1,6 +1,8 @@
 import {create} from "zustand/react";
 import {TodoItem} from "../classes/TodoItem.ts";
 
+const LOCAL_STORAGE_NAME = "todoItems";
+
 type TodoListStore = {
   todoItems: TodoItem[],
   addItem: (item: TodoItem) => void,
@@ -16,15 +18,10 @@ type TodoListStore = {
  * @param deleteItem (Function) Removes the target item from the to-do items array. Accepts one argument; `target` of type `TodoItem`.
  */
 export const useTodoListStore = create<TodoListStore>(set => ({
-  todoItems: [
-    new TodoItem("Implement adding todo items"),
-    new TodoItem("Add ability to change todo item name"),
-    new TodoItem("Add ability to delete todo items"),
-    new TodoItem("Add strike-through when todo item is marked as complete (DONE)"),
-    new TodoItem("Add horizontal break line after each todo item (DONE)"),
-  ],
+  todoItems: JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME) ?? "[]"),
   addItem: (item: TodoItem): void => {
     set(state => {
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...state.todoItems, item]));
       return {todoItems: [...state.todoItems, item]}
     });
   },
@@ -33,7 +30,10 @@ export const useTodoListStore = create<TodoListStore>(set => ({
       const itemIndex: number = state.todoItems.indexOf(target);
       const tmpTodoItems: TodoItem[] = [...state.todoItems];
 
-      if (!tmpTodoItems[itemIndex].trySetTitle(newTitle)) return {todoItems: [...state.todoItems]};
+      if (!tmpTodoItems[itemIndex].trySetTitle(newTitle)) {
+        localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...state.todoItems]));
+        return {todoItems: [...state.todoItems]};
+      }
 
       return {todoItems: tmpTodoItems}
     });
@@ -44,6 +44,7 @@ export const useTodoListStore = create<TodoListStore>(set => ({
       const tmpTodoItems: TodoItem[] = [...state.todoItems];
       tmpTodoItems.splice(itemIndex, 1);
 
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...state.todoItems]));
       return {todoItems: tmpTodoItems}
     })
   }
