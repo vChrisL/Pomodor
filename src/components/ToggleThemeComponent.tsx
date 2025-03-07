@@ -12,8 +12,8 @@ export function ThemeButton() {
     <button
       onClick={(): void => setIsDarkTheme(!isDarkTheme)}
     >
-      {isDarkTheme && <SunIcon svgClass={"w-6 h-6 stroke-[var(--text-color)] dark:stroke-[var(--dark-text-color)]"}/>}
-      {!isDarkTheme && <MoonIcon svgClass={"w-6 h-6 fill-[var(--text-color)] dark:fill-[var(--dark-text-color)]"}/>}
+      {isDarkTheme && <SunIcon svgClass={"w-6 h-6 stroke-gray-300 dark:stroke-[var(--dark-text-color)]"}/>}
+      {!isDarkTheme && <MoonIcon svgClass={"w-6 h-6 fill-gray-300 dark:fill-[var(--dark-text-color)]"}/>}
     </button>
   )
 }
