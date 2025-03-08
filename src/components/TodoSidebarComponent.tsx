@@ -32,6 +32,15 @@ export function TodoSidebar() {
     }
   }
 
+  function handleKeydown(e: React.KeyboardEvent<HTMLFormElement>): void {
+    if (e.key === "Enter" && !e.shiftKey) {
+      handleAddItem();
+    }
+    else if (e.key === "Escape") {
+      setIsCreatingItem(false);
+    }
+  }
+
   return (
     <aside className={`
         transition-colors duration-150 ease-in
@@ -51,6 +60,7 @@ export function TodoSidebar() {
             <form
               ref={formRef}
               className={"flex flex-col gap-1 p-2"}
+              onKeyDown={(e) => handleKeydown(e)}
             >
               <textarea
                 className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)]"}
