@@ -47,7 +47,7 @@ export const useTodoListStore = create<TodoListStore>(set => ({
 
       tmpTodoItems[itemIndex].IsComplete = checkState;
 
-      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...state.todoItems]));
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...tmpTodoItems]));
       return {todoItems: tmpTodoItems}
     });
   },
@@ -57,7 +57,7 @@ export const useTodoListStore = create<TodoListStore>(set => ({
       const tmpTodoItems: TodoItem[] = [...state.todoItems];
       tmpTodoItems.splice(itemIndex, 1);
 
-      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...state.todoItems]));
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...tmpTodoItems]));
       return {todoItems: tmpTodoItems}
     })
   }
