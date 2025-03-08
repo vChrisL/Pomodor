@@ -31,8 +31,11 @@
 @layer components {
   #root {
     @apply
+    transition-colors duration-150 ease-in
     flex flex-col justify-between
     lg:flex-row lg:justify-normal
+    bg-[var(--primary-bg-color)]
+    dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
   }
 
   button {

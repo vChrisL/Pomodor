@@ -11,9 +11,7 @@ export function FooterBar() {
 
   return (
     <footer className={`
-      transition-colors duration-150 ease-in
-      flex flex-row justify-center items-center gap-8 h-16 bg-[var(--primary-bg-color)]
-      dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
+      flex flex-row justify-center items-center gap-8 h-16
       lg:hidden
     `}>
       <button onClick={(): void => {

@@ -27,7 +27,7 @@ export function MobileTodoMenu() {
   }
 
   return (
-    <div className={"w-full h-full p-4 z-10 bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]"}>
+    <div className={"w-full h-full p-4 z-10"}>
       <div className={"h-full overflow-y-auto"}>
         <h1 className={"text-2xl pb-4"}>TO-DO</h1>
         <div className={"flex flex-col gap-1"}>
@@ -42,7 +42,7 @@ export function MobileTodoMenu() {
               className={"flex flex-col gap-1 p-2"}
             >
               <textarea
-                className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)]"}
+                className={"w-full p-2 rounded-lg bg-[var(--secondary-bg-color)] dark:bg-[var(--dark-secondary-bg-color)]"}
                 autoFocus={true}
                 placeholder={"Add an item"}
                 onChange={(e): void => setTodoItemTitle(e.target.value)}

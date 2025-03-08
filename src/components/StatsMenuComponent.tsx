@@ -8,7 +8,7 @@ export function MobileStatsMenu() {
   const totalBreakPeriods = useStatisticsStore(state => state.totalBreakPeriods);
 
   return (
-    <div className={"w-full h-full z-10 bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]"}>
+    <div className={"w-full h-full z-10"}>
       <h1 className={"text-2xl p-4"}>STATISTICS</h1>
 
       <div className={`flex flex-col justify-center items-center gap-4 overflow-x-auto py-2 mt-10`}>
