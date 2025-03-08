@@ -1,11 +1,16 @@
 import {MoonIcon, SunIcon} from "./IconComponents.tsx";
 import {useEffect, useState} from "react";
 
+const LOCAL_STORAGE_THEME: string = "pomodorTheme";
+
 export function ThemeButton() {
-  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+  const storedTheme: boolean = JSON.parse(localStorage.getItem(LOCAL_STORAGE_THEME) ?? "false");
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(storedTheme);
 
   useEffect(() => {
-    document.body.classList.toggle('dark')
+    if (isDarkTheme) document.body.classList.add('dark');
+    else document.body.classList.remove('dark');
+    localStorage.setItem(LOCAL_STORAGE_THEME, JSON.stringify(isDarkTheme));
   }, [isDarkTheme]);
 
   return (
