@@ -19,6 +19,9 @@ export function TodoSidebar() {
     setIsCreatingItem(false)
   });
 
+  /**
+   * Handles adding new to-do item
+   */
   function handleAddItem(): void {
     try {
       const item: TodoItemType = new TodoItemType(todoItemTitle);
