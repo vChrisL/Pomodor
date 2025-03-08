@@ -32,6 +32,10 @@ export function TodoSidebar() {
     }
   }
 
+  /**
+   * Handles ENTER and ESCAPE keydown events.
+   * @param e Keyboard event.
+   */
   function handleKeydown(e: React.KeyboardEvent<HTMLFormElement>): void {
     if (e.key === "Enter" && !e.shiftKey) {
       handleAddItem();
