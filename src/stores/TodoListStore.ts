@@ -20,7 +20,9 @@ type TodoListStore = {
  * @param deleteItem (Function) Removes the target item from the to-do items array. Accepts one argument; `target` of type `TodoItem`.
  */
 export const useTodoListStore = create<TodoListStore>(set => ({
-  todoItems: JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME) ?? "[]"),
+  todoItems: JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME) ?? "[]").map((item: TodoItem) => {
+    return new TodoItem(item.Title);
+  }),
   addItem: (item: TodoItem): void => {
     set(state => {
       localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...state.todoItems, item]));
@@ -33,10 +35,10 @@ export const useTodoListStore = create<TodoListStore>(set => ({
       const tmpTodoItems: TodoItem[] = [...state.todoItems];
 
       if (!tmpTodoItems[itemIndex].trySetTitle(newTitle)) {
-        localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...state.todoItems]));
         return {todoItems: [...state.todoItems]};
       }
 
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(tmpTodoItems));
       return {todoItems: tmpTodoItems}
     });
   },
@@ -47,7 +49,7 @@ export const useTodoListStore = create<TodoListStore>(set => ({
 
       tmpTodoItems[itemIndex].IsComplete = checkState;
 
-      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...tmpTodoItems]));
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(tmpTodoItems));
       return {todoItems: tmpTodoItems}
     });
   },
@@ -57,7 +59,7 @@ export const useTodoListStore = create<TodoListStore>(set => ({
       const tmpTodoItems: TodoItem[] = [...state.todoItems];
       tmpTodoItems.splice(itemIndex, 1);
 
-      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify([...tmpTodoItems]));
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(tmpTodoItems));
       return {todoItems: tmpTodoItems}
     })
   }
