@@ -116,8 +116,7 @@ function App() {
 
       <main className={`
         transition-colors duration-150 ease-in
-        flex flex-col gap-4 h-[calc(100%-4rem)] bg-[var(--primary-bg-color)]
-        dark:bg-[var(--dark-primary-bg-color)] dark:text-[var(--dark-text-color)]
+        flex flex-col gap-4 h-[calc(100%-4rem)]
         lg:p-4 lg:w-[calc(100%-20%)] lg:h-full xl:gap-16
         ${displayTodoMenu || displayStatsMenu ? 'hidden' : ''}
       `}>
