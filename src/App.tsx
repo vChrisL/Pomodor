@@ -13,6 +13,10 @@ import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
 import {MobileStatsMenu} from "./components/StatsMenuComponent.tsx";
 import {Reminder} from "./components/ReminderComponent.tsx";
 import {TodoSidebar} from "./components/TodoSidebarComponent.tsx";
+import {CreateAudioElement} from "./util/utilFunctions.ts";
+// Import audio cues
+import breakAlert from '../public/alert.mp3';
+import focusAlert from '../public/alertLow.mp3';
 
 
 function App() {
@@ -34,6 +38,10 @@ function App() {
   const currentBreakPeriods: number = useStatisticsStore(state => state.currentBreakPeriods);
   const totalFocusPeriods: number = useStatisticsStore(state => state.totalFocusPeriods);
   const totalBreakPeriods: number = useStatisticsStore(state => state.totalBreakPeriods);
+
+  // Audio alert objects
+  const [audioAlerts] = useState<HTMLAudioElement[]>([CreateAudioElement(breakAlert, 0.3), CreateAudioElement(focusAlert, 0.3)])
+
 
   // Update time when focusTime state changes
   useEffect((): void => {
@@ -85,9 +93,11 @@ function App() {
    */
   function setTimer(state: boolean): void {
     if(state) {
+      if (isTimerRunning) audioAlerts[0].play();
       setTime(new Time(focusTime.getHours, focusTime.getMinutes, focusTime.getSeconds))
     }
     else {
+      if (isTimerRunning) audioAlerts[1].play();
       setTime(new Time(breakTime.getHours, breakTime.getMinutes, breakTime.getSeconds))
     }
   }
