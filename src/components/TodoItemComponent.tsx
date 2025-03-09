@@ -38,6 +38,21 @@ export function TodoItem({item}: TodoItemProps) {
     setIsEditing(false);
   }
 
+  /**
+   * Handles ENTER and ESCAPE keydown events.
+   * @param e Keyboard event.
+   */
+  function handleKeydown(e: React.KeyboardEvent<HTMLFormElement>): void {
+    if (e.key === "Enter" && !e.shiftKey) {
+      handleSave();
+    }
+    else if (e.key === "Delete") {
+      handleDelete();
+    }
+    else if (e.key === "Escape") {
+      setIsEditing(false);
+    }
+  }
   return(
     <>
       {!isEditing && (
@@ -73,6 +88,7 @@ export function TodoItem({item}: TodoItemProps) {
         <form
           ref={formRef}
           className={"flex flex-col gap-1 p-2"}
+          onKeyDown={(e) => handleKeydown(e)}
         >
           <textarea
             className={"w-full p-2 rounded-lg bg-[var(--primary-bg-color)] dark:bg-[var(--dark-primary-bg-color)]"}
