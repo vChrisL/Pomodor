@@ -3,8 +3,9 @@ export class TodoItem {
   public Title: string = "";
   public readonly Key: string = "";
 
-  constructor(title: string) {
+  constructor(title: string, isChecked: boolean) {
     if (!this.trySetTitle(title)) throw new Error("Title is invalid");
+    this.IsComplete = isChecked;
     this.Key = `item-${title.substring(1, title.length - 1)}-${new Date().getTime()}`;
   }
 

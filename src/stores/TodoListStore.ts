@@ -21,7 +21,7 @@ type TodoListStore = {
  */
 export const useTodoListStore = create<TodoListStore>(set => ({
   todoItems: JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME) ?? "[]").map((item: TodoItem) => {
-    return new TodoItem(item.Title);
+    return new TodoItem(item.Title, item.IsComplete);
   }),
   addItem: (item: TodoItem): void => {
     set(state => {
