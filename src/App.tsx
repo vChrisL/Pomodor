@@ -21,8 +21,8 @@ function App() {
 
 
   // Timer variables
-  const focusTime = useTimerStore(state => state.focusTimer);
-  const breakTime = useTimerStore(state => state.breakTimer);
+  const focusTime: Time = useTimerStore(state => state.focusTimer);
+  const breakTime: Time = useTimerStore(state => state.breakTimer);
 
   const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
   const [time, setTime] = useState<Time>(new Time(focusTime.getHours,focusTime.getMinutes,focusTime.getSeconds));
@@ -30,10 +30,10 @@ function App() {
 
   // Pomodoro statistics
   const incrementPeriod = useStatisticsStore(state => state.incrementPeriod);
-  const currentFocusPeriods = useStatisticsStore(state => state.currentFocusPeriods);
-  const currentBreakPeriods = useStatisticsStore(state => state.currentBreakPeriods);
-  const totalFocusPeriods = useStatisticsStore(state => state.totalFocusPeriods);
-  const totalBreakPeriods = useStatisticsStore(state => state.totalBreakPeriods);
+  const currentFocusPeriods: number = useStatisticsStore(state => state.currentFocusPeriods);
+  const currentBreakPeriods: number = useStatisticsStore(state => state.currentBreakPeriods);
+  const totalFocusPeriods: number = useStatisticsStore(state => state.totalFocusPeriods);
+  const totalBreakPeriods: number = useStatisticsStore(state => state.totalBreakPeriods);
 
   // Update time when focusTime state changes
   useEffect((): void => {
