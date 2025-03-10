@@ -37,7 +37,7 @@ function App() {
   const totalBreakPeriods: number = useStatisticsStore(state => state.totalBreakPeriods);
 
   // Audio alert objects
-  // const [audioAlerts] = useState<HTMLAudioElement[]>([CreateAudioElement('../public/alert.mp3', 0.3), CreateAudioElement('../public/alertLow.mp3', 0.3)])
+  // const [audioAlerts] = useState<HTMLAudioElement[]>([CreateAudioElement('../public/alert.mp3', 0.3), CreateAudioElement('../public/alertLow.mp3', 0.3)]);
 
 
   // Update time when focusTime state changes
