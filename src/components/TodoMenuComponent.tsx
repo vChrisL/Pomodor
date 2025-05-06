@@ -18,7 +18,7 @@ export function MobileTodoMenu() {
 
   function handleAddItem(): void {
     try {
-      const item: TodoItemType = new TodoItemType(todoItemTitle);
+      const item: TodoItemType = new TodoItemType(todoItemTitle, false);
       addTodoItem(item);
       setIsCreatingItem(false);
     } catch {

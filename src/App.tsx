@@ -13,7 +13,6 @@ import {useStatisticsStore} from "./stores/PomodoroStatisticsStore.ts";
 import {MobileStatsMenu} from "./components/StatsMenuComponent.tsx";
 import {Reminder} from "./components/ReminderComponent.tsx";
 import {TodoSidebar} from "./components/TodoSidebarComponent.tsx";
-import {CreateAudioElement} from "./util/utilFunctions.ts";
 
 
 function App() {
